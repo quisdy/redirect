@@ -578,5 +578,16 @@ footer {
 
 
 .banner{
+	display: flex;
+	flex-direction: column;
 	row-gap:50px;
+}
+
+.section_banner{
+	display: flex;
+	flex-direction: row;
+}
+
+#rings_banner{
+	width: 25%;
 }

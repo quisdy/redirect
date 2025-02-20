@@ -14,31 +14,32 @@
 
 <body>
 	
-	<a href="https://empt1dae.github.io/optimize/" id="banner-link">
+	<a href="https://empt1dae.github.io/optimize/" onclick="countRedirect(event)">
+    <img src="4x.png" alt="Баннер">
+</a>
 
-		 <img src="4x.png" alt="Баннер">
-	</a>
-	<script type="module">
-	  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, doc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
-        apiKey: "YOUR_FIREBASE_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
+        apiKey: "YOUR_FIREBASE_API_KEY", // Замени на свой ключ
+        authDomain: "optimize-adf64.firebaseapp.com",
+        projectId: "optimize-adf64",
+        storageBucket: "optimize-adf64.firebasestorage.app",
+        messagingSenderId: "320149610678",
+        appId: "1:320149610678:web:a13c9aaad88592e0094617",
+        measurementId: "G-BC2TNFRW0Q"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    async function countRedirect(event) {
+    window.countRedirect = async function(event) {
         event.preventDefault(); // Остановить стандартный переход
 
-        const targetUrl = event.currentTarget.href;
-        const counterRef = doc(db, "analytics", "click_counter"); // 🚀 Используем analytics
+        const targetUrl = event.currentTarget.href; // Получаем URL
+        const counterRef = doc(db, "analytics", "click_counter"); // 🚀 Точно в `analytics`
 
         try {
             await updateDoc(counterRef, { count: increment(1) });
@@ -51,11 +52,9 @@
         setTimeout(() => {
             window.location.href = targetUrl;
         }, 500);
-    }
-
-    document.getElementById("banner-link").addEventListener("click", countRedirect);
-window.countRedirect = countRedirect;
+    };
 </script>
+
 </body>
 
 </html>

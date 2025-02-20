@@ -32,6 +32,19 @@
 	  // Initialize Firebase
 	  const app = initializeApp(firebaseConfig);
 	  const analytics = getAnalytics(app);
+
+		function countRedirect(event, targetUrl) {
+        event.preventDefault(); // Остановить переход
+
+        addDoc(collection(db, "clicks"), {
+            ip: "Unknown", // Firebase не даёт получить IP напрямую, но можно использовать Cloud Functions
+            timestamp: serverTimestamp()
+        }).then(() => {
+            window.location.href = targetUrl; // После записи редирект
+        }).catch(() => {
+            window.location.href = targetUrl; // Если ошибка, всё равно редиректим
+        });
+    }
 </script>
 
 <body>

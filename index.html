@@ -20,7 +20,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, doc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, updateDoc, getDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDX4WrSs8_7eamobot9Rq38-cig-vXIZyU",
@@ -36,24 +36,29 @@
     const db = getFirestore(app);
 
     window.countRedirect = async function(event) {
-        event.preventDefault(); // Останавливаем стандартный переход
+        event.preventDefault(); // Остановить переход
 
         const targetUrl = event.currentTarget.href;
-        const counterRef = doc(db, "analytics", "click_counter"); // ✅ Используем коллекцию `analytics`
+        const counterRef = doc(db, "analytics", "click_counter");
 
         try {
-            await updateDoc(counterRef, { count: increment(1) });
-            console.log("✅ Firestore: Счётчик обновлён!");
+            const docSnap = await getDoc(counterRef);
+            if (docSnap.exists()) {
+                await updateDoc(counterRef, { count: increment(1) });
+                console.log("✅ Firestore: Счётчик обновлён!");
+            } else {
+                await setDoc(counterRef, { count: 1 });
+                console.log("🔥 Firestore: Создан новый счётчик!");
+            }
         } catch (error) {
-            console.warn("❌ Документ не найден, создаём новый...");
-            await setDoc(counterRef, { count: 1 });
+            console.error("❌ Ошибка Firestore:", error);
         }
 
         setTimeout(() => {
             window.location.href = targetUrl;
         }, 500);
     };
-
+</script>
 </body>
 
 </html>

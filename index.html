@@ -41,16 +41,17 @@
     async function countRedirect(event, targetUrl) {
         event.preventDefault(); // Останавливаем стандартный переход
 
+        const counterRef = doc(db, "analytics", "click_counter");
+
         try {
-            await addDoc(collection(db, "clicks"), {
-                ip: "Unknown", // Firebase не даёт получить IP напрямую
-                timestamp: serverTimestamp()
-            });
+            // Увеличиваем счётчик на 1
+            await updateDoc(counterRef, { count: increment(1) });
         } catch (error) {
-            console.error("Ошибка записи в Firestore:", error);
+            // Если документа нет, создаём его с count = 1
+            await setDoc(counterRef, { count: 1 });
         }
 
-        // 🏆 Редирект через 0.5 секунды (чтобы данные успели записаться)
+        // 🔀 Редирект через 0.5 сек. (чтобы данные успели записаться)
         setTimeout(() => {
             window.location.href = targetUrl;
         }, 500);

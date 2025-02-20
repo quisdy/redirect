@@ -23,7 +23,7 @@
     import { getFirestore, doc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
-        apiKey: "YOUR_FIREBASE_API_KEY", // Замени на свой ключ
+        apiKey: "AIzaSyDX4WrSs8_7eamobot9Rq38-cig-vXIZyU",
         authDomain: "optimize-adf64.firebaseapp.com",
         projectId: "optimize-adf64",
         storageBucket: "optimize-adf64.firebasestorage.app",
@@ -36,10 +36,10 @@
     const db = getFirestore(app);
 
     window.countRedirect = async function(event) {
-        event.preventDefault(); // Остановить стандартный переход
+        event.preventDefault(); // Останавливаем стандартный переход
 
-        const targetUrl = event.currentTarget.href; // Получаем URL
-        const counterRef = doc(db, "analytics", "click_counter"); // 🚀 Точно в `analytics`
+        const targetUrl = event.currentTarget.href;
+        const counterRef = doc(db, "analytics", "click_counter"); // ✅ Используем коллекцию `analytics`
 
         try {
             await updateDoc(counterRef, { count: increment(1) });
@@ -53,7 +53,6 @@
             window.location.href = targetUrl;
         }, 500);
     };
-</script>
 
 </body>
 

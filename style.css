@@ -1,0 +1,573 @@
+/* ОБЩИЕ СТИЛИ ВСЕХ СТРАНИЦ  */
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-size: 62.5%;
+}
+
+@font-face {
+	font-family: 'Geist Black';
+	src: url('fonts/Geist-Black.woff2') format('woff2');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Geist Regular';
+	src: url('fonts/Geist-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Geist SemiBold';
+	src: url('fonts/Geist-SemBold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Kudry';
+	src: url('fonts/kudry.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* ПЕРЕМЕННЫЕ */
+:root {
+	--accent-color: #8C7FCC;
+	--accent-color-light: #c8c8ff;
+	--text-color: #383838;
+	--text-color-white: #FBFBFF;
+	--gap_1: 150px;
+	--gap_2: 250px;
+	--gap_section: 100px;
+}
+
+/* стилизация элементов форматирования */
+u {
+	color: var(--text-color-white);
+}
+
+/* ссылки, списки */
+a,
+a:link,
+a:visited {
+	color: var(--text-color-white);
+}
+
+a:hover {
+	color: var(--accent-color);
+}
+
+#a_clean {
+	text-decoration: none;
+}
+
+ul,
+ul li {
+	list-style: none;
+}
+
+/* Common */
+nav,
+footer,
+header,
+section,
+main {
+	display: block;
+	overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+	font-size: inherit;
+	font-weight: inherit;
+	letter-spacing: 0.5rem;
+}
+
+/* заголовки секций */
+h1 {
+	color: var(--accent-color);
+	font-family: "Geist";
+	font-size: 11rem;
+	font-weight: 500;
+	line-height: 11rem;
+	text-transform: uppercase;
+}
+
+#h1_white {
+	color: var(--text-color-white);
+}
+
+.container_h1 {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+}
+
+.container_h1_ {
+	width: fit-content;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+/* название новых коллекций и утп  */
+h2 {
+	color: var(--text-color);
+	font-family: "Kudry";
+	font-size: 8rem;
+	font-weight: 300;
+	line-height: 7rem;
+	text-transform: uppercase;
+}
+
+.h2_purple {
+	color: var(--accent-color);
+}
+
+.h2_white {
+	color: var(--text-color-white);
+}
+
+.container_h2 {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	row-gap: 1.5rem;
+	margin-bottom: 20px;
+}
+
+.container_h2_ {
+	text-align: center;
+}
+
+/* услуги, каталог */
+h3 {
+	color: var(--text-color);
+	font-family: "Kudry";
+	font-size: 4.8rem;
+	font-weight: 300;
+	line-height: 4.8rem;
+	text-transform: uppercase;
+}
+
+#h3_footer {
+	color: var(--text-color-white);
+}
+
+/* для кнопок */
+h4 {
+	color: var(--text-color-white);
+	font-family: "Geist";
+	font-size: 1.6rem;
+	font-weight: 800;
+	line-height: 1.6rem;
+	text-transform: uppercase;
+}
+
+.h4_accent {
+	color: var(--accent-color);
+}
+
+/* текст */
+p {
+	color: var(--text-color);
+	font-family: "Geist";
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 2rem;
+	text-align: justify;
+}
+
+.name_item_font,
+.name_item_price {
+	font-size: 1.8rem;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+#footer_font {
+	color: var(--text-color-white);
+	width: fit-content;
+}
+
+img {
+	vertical-align: top;
+	max-width: 100%;
+	height: auto;
+}
+
+/* ФОРМА И КНОПКИ*/
+input,
+textarea,
+select {
+	color: var(--accent-color);
+	font-family: Geist;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 15px;
+	letter-spacing: 5px;
+	text-transform: none;
+	padding-left: 20px;
+}
+
+input:focus,
+input:active {
+	border-color: var(--accent-color);
+}
+
+::placeholder {
+	color: var(--accent-color-light);
+	font-family: "Geist";
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 15px;
+	letter-spacing: 5px;
+	text-transform: none;
+	padding-left: 20px;
+}
+
+input {
+	height: 50px;
+	border: solid 3px;
+	border-color: var(--accent-color-light);
+	border-radius: 40px;
+}
+
+.checkbox_ {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	accent-color: #A4A6FF;
+	column-gap: 15px;
+}
+
+label {
+	cursor: pointer;
+}
+
+/* кнопки */
+button:focus,
+button:active,
+button {
+	width: fit-content;
+	padding: 0 100px;
+	height: 90px;
+	margin-top: 30px;
+	border-radius: 40px;
+	background: var(--accent-color);
+	align-self: center;
+	cursor: pointer;
+	transition: 1s;
+}
+
+#button_white {
+	background: var(--text-color-white);
+}
+
+button:focus,
+button:active,
+button:hover {
+	transform: scale(1.1);
+	background: var(--accent-color-light);
+	color: var(--accent-color);
+}
+
+
+/* ПОЗИЦИОНИРОВАНИЕ */
+#gap_1 {
+	margin-left: var(--gap_1);
+}
+
+#gap_2 {
+	margin-left: var(--gap_2);
+}
+
+#gap_section {
+	padding-top: var(--gap_section);
+}
+
+/* для отступа слева для текста */
+#text {
+	padding-left: var(--gap_2);
+}
+
+.section_text {
+	width: 900px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* бегущая строка */
+.marquee {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	column-gap: 50px;
+	width: 100%;
+	padding: 15px 0;
+	overflow: hidden;
+	white-space: nowrap;
+	box-sizing: border-box;
+	position: relative;
+	background-color: var(--accent-color);
+	cursor: default;
+}
+
+.marquee-content {
+	display: flex;
+	flex-direction: row;
+	column-gap: 50px;
+	animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.lustre {
+	height: 80px;
+}
+
+
+
+
+/* СТИЛИЗАЦИЯ HEADER */
+header {
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.container_header {
+	background-color: var(--text-color-white);
+	width: 95%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 40px;
+	padding: 10px 0;
+}
+
+.container_header_side {
+	margin: 0 25px;
+	display: flex;
+	width: 37.5%;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.container_header_side_down,
+.header_burger,
+.header_burger_menu {
+	display: none;
+}
+
+.menu_midle {
+	margin: 0 20px;
+	width: 25%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#icon {
+	width: 30px;
+}
+
+.container_logo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
+	row-gap: 15px;
+}
+
+#logo_link {
+	text-decoration: none;
+}
+
+#header_font {
+	color: var(--text-color);
+	text-transform: lowercase;
+}
+
+#header_font:hover,
+#header_font:active {
+	text-decoration: underline;
+	color: var(--accent-color);
+}
+
+#logo_font {
+	width: fit-content;
+	color: var(--text-color);
+	line-height: 15px;
+	letter-spacing: 15px;
+	text-transform: uppercase;
+}
+
+
+
+@media (max-width: 1280px) {
+	:root {
+		--gap_1: 100px;
+		--gap_2: 200px;
+		--gap_section: 150px;
+	}
+
+	.container_header {
+		flex-direction: column;
+		row-gap: 20px;
+		justify-content: space-between;
+	}
+
+	.menu_midle {
+		width: 50%;
+	}
+
+	.container_header_side {
+		display: none;
+	}
+
+	.container_header_side_down {
+		margin: 0 25px;
+		display: flex;
+		width: 90%;
+		align-items: center;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+
+}
+
+
+@media (max-width: 960px) {
+	:root {
+		--gap_1: 50px;
+		--gap_2: 150px;
+		--gap_section: 100px;
+	}
+
+	header {
+		row-gap: 10px;
+	}
+
+	.container_header {
+		flex-direction: row;
+		justify-content: center;
+		align-content: center;
+	}
+
+	.menu_midle {
+		width: 90%;
+	}
+
+	.container_header_side_down {
+		display: none;
+	}
+
+	#icon {
+		width: 20px;
+	}
+
+	.header_burger {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 50px;
+		height: 50px;
+		border-radius: 100px;
+		background-color: var(--text-color-white);
+	}
+
+	.header_burger_menu {
+		display: none;
+	}
+
+	.header_burger_menu_active {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--text-color-white);
+		width: 100%;
+		height: 500px;
+	}
+
+	#rings {
+		display: none;
+	}
+
+
+}
+
+
+/* СТИЛИЗАЦИЯ FOOTER */
+footer {
+	background: linear-gradient(var(--accent-color-light) 15%, var(--accent-color) 85%);
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.footer_nav {
+	padding: 0 var(--gap_1);
+	display: flex;
+	flex-direction: row;
+	align-self: center;
+	column-gap: 90px;
+}
+
+.cont_h3 {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.icons {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.logo {
+	margin-top: 50px;
+}
+
+#right {
+	color: white;
+	text-align: right;
+	opacity: 80%;
+}

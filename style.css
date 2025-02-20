@@ -65,10 +65,12 @@ a,
 a:link,
 a:visited {
 	color: var(--text-color-white);
+	cursor: pointer;
 }
 
 a:hover {
 	color: var(--accent-color);
+	cursor: pointer;
 }
 
 #a_clean {
@@ -577,17 +579,25 @@ footer {
 
 
 
-.banner{
+.banner {
 	display: flex;
 	flex-direction: column;
-	row-gap:50px;
+	row-gap: 50px;
 }
 
-.section_banner{
+.section_banner {
+	display: flex;
+	flex-direction: column;
+}
+
+#rings_banner {
+	margin-left: 50px;
+	width: 30%;
+}
+
+.section_banner_content {
 	display: flex;
 	flex-direction: row;
-}
-
-#rings_banner{
-	width: 25%;
+	justify-content: flex-start;
+	align-items: center;
 }

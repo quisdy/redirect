@@ -34,7 +34,7 @@
 	
 	  // Initialize Firebase
 	  const app = initializeApp(firebaseConfig);
-	  const analytics = getAnalytics(app);
+    		const db = getFirestore(app);
 
 		function countRedirect(event, targetUrl) {
         event.preventDefault(); // Остановить переход

@@ -113,32 +113,40 @@
 		const db = getFirestore(app); // Для работы с Firestore
 
 		// Функция обработки клика
-		window.countRedirect = async function (event) {
-			event.preventDefault(); // Остановить стандартный переход
+		window.countRedirect = async function(event) {
+        event.preventDefault(); // Остановить стандартный переход
 
-			const targetUrl = event.currentTarget.href;  // Получаем ссылку
-			const counterRef = doc(db, "analytics", "click_counter");  // Ссылка на документ
+        const targetUrl = event.currentTarget.href;
+        const counterRef = doc(db, "analytics", "click_counter"); // Ссылка на счетчик
+        const clicksCollection = collection(db, "clicks"); // Коллекция кликов
 
-			try {
-				const docSnap = await getDoc(counterRef);  // Получаем данные документа
-				if (docSnap.exists()) {
-					// Если документ существует, увеличиваем значение
-					await updateDoc(counterRef, { count: increment(1) });
-					console.log("✅ Firestore: Счётчик обновлён!");
-				} else {
-					// Если документа нет, создаём его с начальным значением
-					await setDoc(counterRef, { count: 1 });
-					console.log("🔥 Firestore: Создан новый счётчик!");
-				}
-			} catch (error) {
-				console.error("❌ Ошибка Firestore:", error);
-			}
+        try {
+            // 🔹 1. Увеличиваем счетчик переходов в "analytics/click_counter"
+            const docSnap = await getDoc(counterRef);
+            if (docSnap.exists()) {
+                await updateDoc(counterRef, { count: increment(1) });
+                console.log("✅ Firestore: Счётчик обновлён!");
+            } else {
+                await setDoc(counterRef, { count: 1 });
+                console.log("🔥 Firestore: Создан новый счётчик!");
+            }
 
-			// Переход по ссылке после записи в Firestore
-			setTimeout(() => {
-				window.location.href = targetUrl;
-			}, 500);  // Задержка на 500 мс, чтобы успел записаться счётчик
-		};
+            // 🔹 2. Записываем данные о переходе в "clicks"
+            await addDoc(clicksCollection, {
+                timestamp: serverTimestamp(), // Автоматическое добавление времени
+                url: targetUrl // Сохраняем целевую ссылку
+            });
+            console.log("📌 Firestore: Записан новый клик!");
+
+        } catch (error) {
+            console.error("❌ Ошибка Firestore:", error);
+        }
+
+        // Переход на целевую страницу после задержки
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 500);
+    };
 	</script>
 
 </body>

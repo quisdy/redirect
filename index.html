@@ -113,7 +113,7 @@
 		const db = getFirestore(app); // Для работы с Firestore
 
 		// Функция обработки клика
-		window.countRedirect = async function(event) {
+		 window.countRedirect = async function(event) {
         event.preventDefault(); // Остановить стандартный переход
 
         const targetUrl = event.currentTarget.href;
@@ -131,16 +131,16 @@
                 console.log("🔥 Firestore: Создан новый счётчик!");
             }
 
-            // 🔹 2. Записываем данные о переходе в "clicks"
+            // 🔹 2. Создаём новый документ в "clicks" с уникальным ID
             await addDoc(clicksCollection, {
-                timestamp: serverTimestamp() // Автоматически проставит текущую дату и время
+                timestamp: serverTimestamp(), // Автоматическое добавление времени
+                ip: "Unknown" // Здесь можно заменить на реальный IP, если есть доступ
             });
-            console.log("📌 Firestore: Записан новый переход!");
+            console.log("📌 Firestore: Добавлена новая запись в clicks!");
 
         } catch (error) {
             console.error("❌ Ошибка Firestore:", error);
         }
-
 
         // Переход на целевую страницу после задержки
         setTimeout(() => {
